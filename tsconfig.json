@@ -6,15 +6,13 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "declaration": true,
-    "sourceMap": true,
+    "declaration": false,
+    "sourceMap": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "pretty": true,
     "lib": ["dom", "esnext"],
-    "skipLibCheck": true,
-    "sourceRoot": "src",
-    "baseUrl": "src"
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
