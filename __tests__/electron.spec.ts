@@ -29,6 +29,6 @@ describe('jest-less-loader', () => {
     }
     `;
 
-    expect(() => transformer.process(less)).toThrow();
+    expect(() => transformer.process(less)).not.toThrow();
   });
 });

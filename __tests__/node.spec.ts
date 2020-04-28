@@ -12,7 +12,7 @@ describe('jest-less-loader', () => {
     }
     `;
 
-    expect(transformer.process(less).code).toEqual('');
+    expect(transformer.process(less).code).toBe('');
   });
 
   test('transformer less syntax', () => {
@@ -24,6 +24,7 @@ describe('jest-less-loader', () => {
     }
     `;
 
-    expect(() => transformer.process(less)).toThrow();
+    // only warn, not throw
+    expect(() => transformer.process(less)).not.toThrow();
   });
 });

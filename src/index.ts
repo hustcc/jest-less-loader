@@ -46,14 +46,26 @@ function injectStyle(css: string): void {
  * @type {{process(*=): *}}
  */
 module.exports = {
-  process(fileContent): object {
-    const css = transformLess(fileContent);
-
-    // when running in nodejs env, will throw error.
+  process(fileContent: string, filePath: string): object {
+    let css = fileContent;
     try {
-      injectStyle(css);
+      // if .less, transform, if .css, keep it
+      css = filePath.endsWith('.less')
+        ? transformLess(fileContent)
+        : filePath.endsWith('.css')
+        ? fileContent
+        : fileContent;
     } catch (e) {
-      // do nothing
+      // if throw, use file content
+      css = fileContent;
+      console.warn('jest-less-loader: process the file error.', { fileContent, filePath });
+    } finally {
+      // when running in nodejs env, will throw error.
+      try {
+        injectStyle(css);
+      } catch (e) {
+        // do nothing
+      }
     }
 
     // no code for js module

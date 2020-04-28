@@ -25,7 +25,7 @@ Update your jest configure, and add it into transform.
 
 ```diff
 +    "transform": {
-+      ".+\\.less$": "jest-less-loader"
++      "\\.(less|css)$": "jest-less-loader"
 +    },
 ```
 

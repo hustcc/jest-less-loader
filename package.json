@@ -1,6 +1,6 @@
 {
   "name": "jest-less-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Jest transformer for .less file.",
   "license": "MIT",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "clean": "rimraf -rf lib",
     "lint": "eslint src/**/*.ts __tests__/**/*.ts",
     "lint-staged": "lint-staged",
-    "test": "jest",
+    "test": "jest --no-cache",
     "ci": "npm run lint && npm run test && lint-md .",
     "start": "tsc -w",
     "build": "rimraf ./lib && tsc --module commonjs --outDir lib",
@@ -55,7 +55,7 @@
       "src/**/*.ts"
     ],
     "transform": {
-      ".+\\.less$": "./lib/index.js"
+      "\\.(less|css)$": "./lib/index.js"
     }
 },
   "lint-staged": {
