@@ -11,6 +11,7 @@ interface Transformer {
 /**
  * transform less sync
  * @param fileContent
+ * @param filePath
  */
 function transformLess(fileContent: string, filePath: string): string {
   const data = fileContent.replace(/^\uFEFF/, '');
