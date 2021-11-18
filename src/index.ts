@@ -10,12 +10,14 @@ interface Transformer {
 
 /**
  * transform less sync
- * @param content
+ * @param fileContent
+ * @param filePath
  */
-function transformLess(content: string): string {
-  const data = content.replace(/^\uFEFF/, '');
+function transformLess(fileContent: string, filePath: string): string {
+  const data = fileContent.replace(/^\uFEFF/, '');
 
-  const options = { sync: true };
+  // handle with fileContent include @import url
+  const options = { sync: true, syncImport: true, relativeUrls: true, filename: filePath };
 
   let css = '';
 
@@ -50,11 +52,7 @@ module.exports = {
     let css = fileContent;
     try {
       // if .less, transform, if .css, keep it
-      css = filePath.endsWith('.less')
-        ? transformLess(fileContent)
-        : filePath.endsWith('.css')
-        ? fileContent
-        : fileContent;
+      css = filePath.endsWith('.less') ? transformLess(fileContent, filePath) : fileContent;
     } catch (e) {
       // if throw, use file content
       css = fileContent;
