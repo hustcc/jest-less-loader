@@ -17,7 +17,8 @@ function transformLess(fileContent: string, filePath: string): string {
   const data = fileContent.replace(/^\uFEFF/, '');
 
   // handle with fileContent include @import url
-  const options = { sync: true, syncImport: true, relativeUrls: true, filename: filePath };
+  // paths used for search less file from node_modules, such as `@import '@lib/index.less'`
+  const options = { sync: true, syncImport: true, relativeUrls: true, filename: filePath, paths: ['node_modules'] };
 
   let css = '';
 
